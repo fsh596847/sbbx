@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:background="#50000000" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f4f4"
+        android:padding="24dp" >
+
+        <com.zhaolong.android.views.PickerView
+            xmlns:sliding="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pickerview_birthday_choose_year"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            sliding:maxDateTextSize="@dimen/tab"
+            sliding:minDateTextSize="@dimen/main" />
+
+        <com.zhaolong.android.views.PickerView
+            xmlns:sliding="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pickerview_birthday_choose_month"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            sliding:maxDateTextSize="@dimen/tab"
+            sliding:minDateTextSize="@dimen/main" />
+
+        <com.zhaolong.android.views.PickerView
+            xmlns:sliding="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pickerview_birthday_choose_day"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            sliding:maxDateTextSize="@dimen/tab"
+            sliding:minDateTextSize="@dimen/main" />
+        
+        <com.zhaolong.android.views.PickerView
+            xmlns:sliding="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pickerview_birthday_choose_hh"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            sliding:maxDateTextSize="@dimen/tab"
+            sliding:minDateTextSize="@dimen/main" />
+        
+        <com.zhaolong.android.views.PickerView
+            xmlns:sliding="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pickerview_birthday_choose_mm"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            sliding:maxDateTextSize="@dimen/tab"
+            sliding:minDateTextSize="@dimen/main" />
+        
+        <com.zhaolong.android.views.PickerView
+            xmlns:sliding="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pickerview_birthday_choose_ss"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            sliding:maxDateTextSize="@dimen/tab"
+            sliding:minDateTextSize="@dimen/main" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dcdcdc" >
+
+        <TextView
+            android:id="@+id/tv_birthday_choose_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="#f5f4f4"
+            android:textColor="@color/color_major_blue"
+            android:gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="取消"
+            android:textSize="@dimen/main" />
+
+        <TextView
+            android:id="@+id/tv_birthday_choose_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="#f5f4f4"
+            android:textColor="@color/color_major_blue"
+            android:gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="确定"
+            android:textSize="@dimen/main" />
+    </LinearLayout>
+
+</LinearLayout>

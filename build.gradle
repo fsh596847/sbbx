@@ -1,0 +1,30 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'buildsystem/dependencies.gradle'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+    }
+}
+
+allprojects {
+    ext {
+        //    androidVersionCode = 9
+        //    androidVersionName = "1.9.5"
+        androidVersionCode = 1
+        androidVersionName = "1.0"
+        androidApplicationId = "com.zhaolong.android.sbbx"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId = "com.zhaolong.android.sbbx.test"
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+        maven { url "https://jitpack.io" }
+    }
+}

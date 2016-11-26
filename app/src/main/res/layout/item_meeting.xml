@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:id="@+id/rl_meeting"
+        android:layout_width="match_parent"
+        android:layout_height="140dp" >
+
+        <ImageView
+            android:id="@+id/ImageView_meeting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@color/color_white" >
+
+        <TextView
+            android:id="@+id/textView_meeting_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/color_gray_deep"
+            android:textSize="@dimen/main" />
+        
+        <TextView
+            android:id="@+id/textView_meeting_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/textView_meeting_name"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/main" />
+        
+        <TextView
+            android:id="@+id/textView_meeting_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textView_meeting_time"
+            android:layout_below="@id/textView_meeting_name"
+            android:paddingLeft="8dp"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/main" />
+        
+        <TextView
+            android:id="@+id/textView_meeting_issign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/main" />
+
+    </RelativeLayout>
+
+</LinearLayout>

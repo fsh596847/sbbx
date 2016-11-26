@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_gray_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_layout_height_tab"
+        android:background="@color/color_major_blue_tab" >
+
+        <ImageView
+            android:id="@+id/iv_web_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:paddingLeft="@dimen/activity_padding_tab"
+            android:paddingRight="@dimen/activity_padding_tab"
+            android:src="@drawable/back_w" />
+
+        <TextView
+            android:id="@+id/tv_web_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/tab" />
+    </RelativeLayout>
+    
+    <ProgressBar
+        android:id="@+id/myProgressBar_webView"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/color_white" />
+
+    <WebView
+        android:id="@+id/webView_web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" />
+
+</LinearLayout>

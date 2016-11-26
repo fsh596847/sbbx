@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_bg">#f4f4f4</color>
+	<!-- 活动界面默认背景颜色 -->
+    <color name="color_bg_white">#EBFFFFFF</color>
+	<!-- 标题栏默认背景颜色 -->
+    <color name="color_white">#ffffff</color>
+    <color name="color_white_transparency">#faffffff</color>
+    <color name="color_major_blue">#199BFC</color><!-- 主色：蓝色 -->
+    <color name="color_major_blue_tab">#fa199BFC</color><!-- 主色：蓝色   微透 -->
+    <color name="color_minor">#ffb84d</color><!-- 配色：橙黄色  -->
+    <color name="color_gray_deep">#333333</color><!-- 字体深灰色 -->
+    <color name="color_gray_light">#666666</color><!-- 字体浅灰色 -->
+    <color name="color_gray">#999999</color><!-- 字体灰色 -->
+    <color name="color_gray_bg">#F2F2F2</color>
+    <color name="color_bottom_bg">#01a2ea</color><!-- 底部通用按键背景颜色 -->
+    <color name="color_bottom_bg_press">#027eb8</color><!-- 底部通用按键背景颜色(按下) -->
+    <color name="color_gray_button_bg">#EB808080</color><!-- 灰色按键背景颜色 -->
+    <color name="color_gray_button_bg_press">#EB4c4c4c</color><!-- 灰色按键背景颜色(按下) -->
+    <color name="color_white_button_bg">#EBFFFFFF</color><!-- 白色按键背景颜色 -->
+    <color name="color_white_button_bg_press">#EB808080</color><!-- 白色按键背景颜色(按下) -->
+    <color name="color_divider_gray">#cccccc</color>
+    <!--
+橘红色：#FF5001    (255,80,1)
+橙黄色：#FC9B1C    (252,155,28)
+海蓝色：#7DCCCF    (125,204,207)
+
+
+
+    -->
+
+    <!-- <color name="color_orange_red">#FF5001</color>
+    <color name="color_orange_yellow">#FC9B1C</color>
+    <color name="color_seablue">#7DCCCF</color>
+    <color name="red">#ff0000</color> -->
+    <!--
+字体颜色
+
+黑色：#333333    （51,51,51）
+中灰色：#666666    （102,102,102）
+灰色：#999999    （153,153,153）
+
+
+
+    -->
+    <!-- <color name="font_white">#FFFFFF</color>
+    <color name="font_black">#333333</color>
+    <color name="font_gray_mid">#666666</color>
+    <color name="font_gray">#999999</color>
+    <color name="gray_light">#E5E5E5</color>
+    <color name="font_gray_white">#b3b3b3</color> -->
+    <!--
+分隔线颜色
+
+宽度or长度 1像素
+淡灰颜色：#dedede    (222,222,222)
+
+
+
+    -->
+
+</resources>

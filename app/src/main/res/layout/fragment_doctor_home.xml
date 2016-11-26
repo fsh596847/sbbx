@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/layout_doc_home_imag"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager_doc_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/viewGroup_doc_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="4dp" >
+            </LinearLayout>
+
+        </RelativeLayout>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/color_gray_bg" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/color_white"
+            android:gravity="center"
+            android:text="设备管理"
+            android:textColor="@color/color_gray_deep"
+            android:textSize="@dimen/main" />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_gray_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/btn_doctor_home_activate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_activate"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="扫码激活"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray_bg" />
+
+            <Button
+                android:id="@+id/btn_doctor_home_find"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_find"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="设备查询"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray_bg" />
+
+            <Button
+                android:id="@+id/btn_doctor_main_exception"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_exception"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="保养管理"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+            
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray_bg" />
+            
+            <Button
+                android:id="@+id/btn_doctor_main_statement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_statement"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="统计报表"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+            
+        </LinearLayout>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_gray_bg" />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/color_white"
+            android:gravity="center"
+            android:text="维修管理"
+            android:textColor="@color/color_gray_deep"
+            android:textSize="@dimen/main" />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_gray_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/btn_doctor_home_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_message"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="消息"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray_bg" />
+
+            <Button
+                android:id="@+id/btn_doctor_home_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_scan"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="我的报修"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray_bg" />
+
+            <Button
+                android:id="@+id/btn_doctor_home_evaluate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_evaluate"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="评价管理"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+            
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray_bg" />
+            
+            <Button
+                android:id="@+id/btn_doctor_home_call"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/d_h_call"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:text="联系客服"
+                android:textColor="@color/color_gray_deep"
+                android:textSize="@dimen/defaul" />
+        </LinearLayout>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/color_gray_bg" />
+    </LinearLayout>
+
+</ScrollView>

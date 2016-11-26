@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_layout_height_tab"
+        android:background="@color/color_major_blue_tab" >
+
+        <ImageView
+            android:id="@+id/iv_judge_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:paddingLeft="@dimen/activity_padding_tab"
+            android:paddingRight="@dimen/activity_padding_tab"
+            android:src="@drawable/back_w" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的评价"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/tab" />
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_layout_height_tab"
+        android:background="@color/color_white" >
+
+        <RelativeLayout
+            android:id="@+id/layout_judge_yes"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+            
+            <TextView
+                android:id="@+id/tv_judge_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_major_blue"
+                android:text="已评价"
+                android:textSize="@dimen/main" />
+            
+            <TextView
+                android:id="@+id/iv_judge_yes"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_major_blue" />
+            
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/layout_judge_no"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+            
+            <TextView
+                android:id="@+id/tv_judge_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_gray_light"
+                android:text="未评价"
+                android:textSize="@dimen/main" />
+            
+            <TextView
+                android:id="@+id/iv_judge_no"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_major_blue"
+                android:visibility="gone" />
+            
+        </RelativeLayout>
+        
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_gray_bg" />
+
+    <ListView
+        android:id="@+id/listView_judge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        android:scrollbars="none"
+        android:dividerHeight="1dp"
+        android:divider="@color/color_gray_bg" >
+    </ListView>
+
+</LinearLayout>

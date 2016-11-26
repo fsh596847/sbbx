@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_padding_tab"
+    android:background="@color/color_white" >
+
+    <TextView
+        android:id="@+id/textView_sevice_record_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_gray_deep"
+        android:textSize="@dimen/main" />
+    
+    <TextView
+        android:id="@+id/textView_sevice_record_falultDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_sevice_record_name"
+        android:gravity="center_vertical"
+        android:textColor="#FF5001"
+        android:textSize="@dimen/main" />
+    
+    <TextView
+        android:id="@+id/textView_sevice_record_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/color_gray_light"
+        android:textSize="@dimen/default_x" />
+
+</RelativeLayout>

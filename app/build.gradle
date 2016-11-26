@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+
+android {
+  def globalConfiguration = rootProject.ext
+  compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+  buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+  defaultConfig {
+    minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+    targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+
+    applicationId globalConfiguration.getAt("androidApplicationId")
+    versionCode globalConfiguration.getAt("androidVersionCode")
+    versionName globalConfiguration.getAt("androidVersionName")
+  }
+  useLibrary 'org.apache.http.legacy'
+  signingConfigs {
+
+    release {
+      storeFile file('../buildsystem/zlkey.keystore')
+      storePassword '123456'
+      keyAlias 'kevin'
+      keyPassword '123456'
+    }
+
+    debug {
+      storeFile file('../buildsystem/zlkey.keystore')
+      storePassword '123456'
+      keyAlias 'kevin'
+      keyPassword '123456'
+    }
+  }
+  buildTypes {
+
+    release {
+      // 混淆
+      minifyEnabled true
+      // Zipalign优化
+      zipAlignEnabled true
+      // 移除无用的resource文件
+      shrinkResources true
+      //debug调试
+      debuggable true
+      resValue "string", "app_name", "易报修"
+      //日志控制
+      buildConfigField "boolean", "RELEASED", "true"
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.release
+    }
+
+    //http://blog.csdn.net/ouyang_peng/article/details/51207005
+    debug {
+      // 混淆
+      minifyEnabled false
+      // Zipalign优化
+      zipAlignEnabled true
+      // 移除无用的resource文件
+      shrinkResources false
+      //debug调试
+      debuggable true
+      resValue "string", "app_name", "易报修debug"
+      //日志控制
+      buildConfigField "boolean", "RELEASED", "true"
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.debug
+    }
+  }
+  // 移除lint检查的error
+  lintOptions {
+    abortOnError false
+  }
+}
+
+// 两种定义方式均可
+//def propFile = new File('signing.properties')
+////def File propFile = rootProject.file('signing.properties')
+//
+//if (propFile.exists() && propFile.canRead()) {
+//    def Properties props = new Properties()
+////    props.load(new InputStreamReader(new FileInputStream(propFile), StandardCharsets.UTF_8));
+//    props.load(new FileInputStream(propFile))
+//
+//    if (props != null &&
+//            props.containsKey('RELEASE_STORE_FILE') &&
+//            props.containsKey('RELEASE_STORE_PASSWORD') &&
+//            props.containsKey('RELEASE_KEY_ALIAS') &&
+//            props.containsKey('RELEASE_KEY_PASSWORD')) {
+//
+////        android.signingConfigs.release.storeFile = file(props['RELEASE_STORE_FILE'])
+////        android.signingConfigs.release.storePassword = props['RELEASE_STORE_PASSWORD']
+////        android.signingConfigs.release.keyAlias = props['RELEASE_KEY_ALIAS']
+////        android.signingConfigs.release.keyPassword = props['RELEASE_KEY_PASSWORD']
+//
+//        android.signingConfigs.release.storeFile = file('../buildsystem/registered _debug.keystore')
+//        android.signingConfigs.release.storePassword = 'wang123'
+//        android.signingConfigs.release.keyAlias = '预约挂号'
+//        android.signingConfigs.release.keyPassword = 'wang123'
+//    } else {
+//        println 'signing.properties found but some entries are missing line 166'
+//        android.buildTypes.release.signingConfig = null
+//    }
+//} else {
+//    println 'signing.properties not found line 170'
+//    android.buildTypes.release.signingConfig = null
+//}
+dependencies {
+  def appDependencies = rootProject.ext.appDependencies
+  compile appDependencies.supportv4
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+}

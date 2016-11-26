@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mo_scanner_bg" >
+
+    <SurfaceView
+        android:id="@+id/mo_scanner_preview_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/mo_scanner_bg" />
+
+    <com.zxing.scan.ViewfinderView
+        android:id="@+id/mo_scanner_viewfinder_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mo_scanner_bg" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_layout_height_tab"
+        android:background="@color/color_major_blue" >
+
+        <ImageView
+            android:id="@+id/mo_scanner_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:paddingLeft="@dimen/activity_padding_tab"
+            android:paddingRight="@dimen/activity_padding_tab"
+            android:src="@drawable/back_w" />
+
+        <TextView
+            android:id="@+id/mo_scanner_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/tab" />
+        
+        <ImageView
+            android:id="@+id/mo_scanner_light"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/activity_padding_tab"
+            android:paddingRight="@dimen/activity_padding_tab"
+            android:src="@drawable/mo_scanner_light_light"
+            android:contentDescription="@null" />
+    </RelativeLayout>
+
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/main"
+        android:textColor="@color/color_white"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:text="二维码 、条形码扫描"
+        android:layout_marginBottom="70dp"
+        />
+</FrameLayout>

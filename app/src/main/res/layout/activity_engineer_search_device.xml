@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white">
+
+
+  <RelativeLayout
+      android:id="@+id/linearlayout_search"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+  >
+
+    <ImageView
+        android:id="@+id/iv_device_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:src="@drawable/backnormal"
+    />
+    <TextView
+        android:id="@+id/tv_searc"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="searchClick"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="搜索"
+        android:textSize="15sp"
+    />
+
+    <com.zhaolong.android.views.ClearEditText
+        android:id="@+id/search_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/tv_searc"
+        android:layout_toRightOf="@id/iv_device_back"
+        android:background="@drawable/search_et_bg2"
+        android:drawableLeft="@drawable/home_search"
+        android:drawableRight="@drawable/delete_selector"
+        android:hint="请输入设备名称"
+        android:imeOptions="actionSearch"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:singleLine="true"
+        android:textSize="15sp"
+    />
+
+  </RelativeLayout>
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/listView_device_device"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:scrollbars="none">
+    </ListView>
+
+
+  </FrameLayout>
+
+</LinearLayout>
