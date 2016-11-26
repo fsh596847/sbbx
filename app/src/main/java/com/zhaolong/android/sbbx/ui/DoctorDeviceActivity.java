@@ -1,8 +1,5 @@
 package com.zhaolong.android.sbbx.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -25,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alibaba.fastjson.JSON;
 import com.zhaolong.android.sbbx.R;
 import com.zhaolong.android.sbbx.SpData;
@@ -33,10 +29,13 @@ import com.zhaolong.android.sbbx.beans.Device;
 import com.zhaolong.android.sbbx.beans.Hospital;
 import com.zhaolong.android.sbbx.beans.HttpResult;
 import com.zhaolong.android.sbbx.services.DataService;
+import com.zhaolong.android.sbbx.ui.search.DoctorDeviceSearchActivity;
 import com.zhaolong.android.sbbx.utils.HlpUtils;
 import com.zhaolong.android.sbbx.utils.SyncImageLoaderListview;
 import com.zhaolong.android.sbbx.utils.mLog;
 import com.zhaolong.android.sbbx.windows.LoadingDialog;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DoctorDeviceActivity extends Activity {
 	
@@ -46,22 +45,29 @@ public class DoctorDeviceActivity extends Activity {
 	HospitalAdapter hospitalAdapter;
 	ListView hospitalListView;
 	Hospital hospital = new Hospital();
-	private List<String> typeList = new ArrayList<String>();//设备类型列表
 	ListView typeListView;
 	TypeAdapter typeAdapter;
 	int depart = 0;//设备类型  1：诊断设备 2：治疗设备
-	
 	DeviceAdapter deviceAdapter;
 	ListView deviceListView;
 	List<Device> deviceList = new ArrayList<Device>();
+	priva
+			te
+	prite Dialog
+	priva
+			te
+	private List<String> typeList = new ArrayList<String>();//设备类型列表
 	//分页刷新
-	private int p; 
+	private int p;
 	private int page_size;
 	private boolean success;//是否更新成功
 	private boolean isQuery;//是否正在更新
+
+	blic
 	private boolean isFinish;
-	
-	
+
+	privavaivate
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,7 +89,7 @@ public class DoctorDeviceActivity extends Activity {
 		deviceListView.setAdapter(deviceAdapter);
 		typeAdapter = new TypeAdapter(getApplicationContext());
 		typeListView.setAdapter(typeAdapter);
-		
+
 		typeListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -128,11 +134,11 @@ public class DoctorDeviceActivity extends Activity {
 			}
 		});
 		deviceListView.setOnScrollListener(new OnScrollListener() {
-			
+
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 			}
-			
+
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
@@ -151,15 +157,23 @@ public class DoctorDeviceActivity extends Activity {
 		});
 		//返回
 		findViewById(R.id.iv_doctor_device_back).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				finish();
 			}
 		});
+		findViewById(R.id.iv_doctor_device_find).setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(DoctorDeviceActivity.this, DoctorDeviceSearchActivity.class);
+				startActivity(intent);
+			}
+		});
 		//科室下拉
 		tvHospital.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Drawable drawable;
@@ -189,7 +203,7 @@ public class DoctorDeviceActivity extends Activity {
 		});
 		//设备类型下拉
 		tvType.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Drawable drawable;
@@ -214,12 +228,14 @@ public class DoctorDeviceActivity extends Activity {
 				}
 			}
 		});
-		
+
 		clearDatas();
 		queryHospitaldoc();
 		queryEngineerEquip();
 	}
-	
+
+	priva
+
 	private void clearDatas() {
 		p = 1;
 		page_size = 20;
@@ -228,9 +244,129 @@ public class DoctorDeviceActivity extends Activity {
 		isFinish = false;
 		deviceList.clear();
 	}
-	
+
+	pute
+
+	void queryEngineerEquip() {
+		isQuery = false;
+		new Thread(new Runnable() {
+
+			@SuppressLint("SimpleDateFormat")
+			@Override
+			public void run() {
+				try {
+					String response = DataService.queryMedicalEquip(getApplicationContext()
+							, new SpData(getApplicationContext()).getStringValue(SpData.keyId, null)
+							, new SpData(getApplicationContext()).getStringValue(SpData.keyPhone, null)
+							, p, page_size,
+							"不限".equals(hospital.getDepartName()) ? null : hospital.getDepartName(), depart);
+					mLog.d("http", "p:" + p + ",response：" + response);
+					if (response == null) {
+
+					} else {
+						HttpResult hr = JSON.parseObject(response, HttpResult.class);
+						if (hr != null) {
+							success = true;
+							if (hr.isSuccess()) {
+								if (hr.getTotalPage() <= p) {
+									isFinish = true;
+								}
+								deviceList.addAll(JSON.parseArray(hr.getData().toString(), Device.class));
+								runOnUiThread(new Runnable() {
+									@Override
+									public void run() {
+										deviceAdapter.setList();
+									}
+								});
+							} else {
+							}
+						} else {
+
+						}
+					}
+				} catch (Exception e) {
+					mLog.e("http", "Exception :" + e.getMessage());
+					e.printStackTrace();
+				}
+				isQuery = true;
+			}
+		}).start();
+	}
+
+	void queryHospitaldoc() {
+		reload();
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+
+				try {
+					String s = DataService.querydepart(DoctorDeviceActivity.this);
+					mLog.d("http", "s:" + s);
+					if (!HlpUtils.isEmpty(s)) {
+						final HttpResult hr = JSON.parseObject(s, HttpResult.class);
+						if (hr != null) {
+							if (hr.isSuccess()) {
+								hospitalList.addAll(JSON.parseArray(hr.getData().toString(), Hospital.class));
+								runOnUiThread(new Runnable() {
+									@Override
+									public void run() {
+										hospitalAdapter.notifyDataSetChanged();
+									}
+								});
+							} else {
+								runOnUiThread(new Runnable() {
+									@Override
+									public void run() {
+										Toast.makeText(getApplicationContext(), hr.getData().toString(),
+												Toast.LENGTH_SHORT).show();
+									}
+								});
+							}
+						}
+					} else {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								Toast.makeText(getApplicationContext(), "请检查网络后重试！", Toast.LENGTH_SHORT).show();
+							}
+						});
+					}
+				} catch (final Exception he) {
+					he.printStackTrace();
+					mLog.e("http", "Exception:" + he.getMessage());
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							Toast.makeText(getApplicationContext(), he.getMessage(), Toast.LENGTH_SHORT).show();
+						}
+					});
+				}
+				closeLoadingDialog();
+			}
+		}).start();
+	}
+
+	void reload() {
+		if (loadingDialog == null) {
+			loadingDialog = LoadingDialog.createLoadingDialog(this);
+		}
+		if (loadingDialog != null && !loadingDialog.isShowing()) {
+			loadingDialog.show();
+		}
+	}
+
+	void closeLoadingDialog() {
+		if (null != loadingDialog) {
+			loadingDialog.dismiss();
+			loadingDialog = null;
+		}
+	}
+
+	loadingDialog=null
+
 	private class DeviceAdapter extends BaseAdapter{
-		
+
 		@SuppressLint("HandlerLeak")
 		Handler handler = new Handler(){
 			public void handleMessage(Message msg) {
@@ -242,21 +378,60 @@ public class DoctorDeviceActivity extends Activity {
 				default:
 					break;
 				}
-			};};
-		
+			}
+		};
+
 		ListView mListView;
+		SyncImageLoaderListview syncImageLoader = new SyncImageLoaderListview();
+		AbsListView.OnScrollListener onScrollListener = new AbsListView.OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				switch (scrollState) {
+					case AbsListView.OnScrollListener.SCROLL_STATE_FLING:
+						syncImageLoader.lock();
+						break;
+					case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+						loadImage();
+						break;
+					case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+						syncImageLoader.lock();
+						break;
+
+					default:
+						break;
+				}
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+			}
+		};
 		private Drawable[] drawables;
-		
+		SyncImageLoaderListview.OnImageLoadListener imageLoadListener =
+				new SyncImageLoaderListview.OnImageLoadListener() {
+
+					@Override
+					public void onImageLoad(Integer t, Drawable drawable, Integer index) {
+						drawables[t] = drawable;
+						handler.sendEmptyMessage(0);
+					}
+
+					@Override
+					public void onError(Integer t) {
+					}
+				};
 		private LayoutInflater mInflater = null;
 		private Context mContext;
-		
+
 		public DeviceAdapter(Context context, ListView lvExpert){
 			this.mInflater = LayoutInflater.from(context);
 			mContext = context;
 			mListView = lvExpert;
 			mListView.setOnScrollListener(onScrollListener);
 		}
-		
+
 		public void setList(){
 			if(deviceList.size()>0){
 				if(drawables != null){
@@ -303,16 +478,16 @@ public class DoctorDeviceActivity extends Activity {
 		    {
 		        h = (ViewHolder)v.getTag();
 		    }
-		    
-		    if(getCount()>0)
+
+			if(getCount()>0)
 		    {
 		    	Device a = deviceList.get(position);
 		    	h.tvName.setText(a.getEquipName()==null ? "" :a.getEquipName());
 		    	h.tvCode.setText("设备编号  "+(a.getEquipCode()==null ? "" :a.getEquipCode()));
 		    	h.tvType.setText("设备分类  "+(a.getEquipClass()==null ? "" :a.getEquipClass()));
-		    	
-		    	String img = a.getImg();
-		    	Drawable d = position>=drawables.length?null:drawables[position];
+
+					String img = a.getImg();
+					Drawable d = position>=drawables.length?null:drawables[position];
 				if(d != null){
 					h.iv.setImageDrawable(d);
 				}
@@ -323,29 +498,7 @@ public class DoctorDeviceActivity extends Activity {
 		    }
 			return v;
 		}
-		
-		class ViewHolder
-		{
-			ImageView iv;
-			TextView tvName;
-			TextView tvCode;
-			TextView tvType;
-		}
-		
-		SyncImageLoaderListview.OnImageLoadListener imageLoadListener = new SyncImageLoaderListview.OnImageLoadListener(){
 
-			@Override
-			public void onImageLoad(Integer t, Drawable drawable,Integer index) {
-				drawables[t] = drawable;
-				handler.sendEmptyMessage(0);
-			}
-			@Override
-			public void onError(Integer t) {
-			}
-
-		};
-
-		SyncImageLoaderListview syncImageLoader = new SyncImageLoaderListview();
 		public void loadImage(){
 			int start = mListView.getFirstVisiblePosition();
 			int end =mListView.getLastVisiblePosition();
@@ -356,92 +509,24 @@ public class DoctorDeviceActivity extends Activity {
 			syncImageLoader.unlock();
 		}
 
-		AbsListView.OnScrollListener onScrollListener = new AbsListView.OnScrollListener() {
-
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				switch (scrollState) {
-				case AbsListView.OnScrollListener.SCROLL_STATE_FLING:
-					syncImageLoader.lock();
-					break;
-				case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
-					loadImage();
-					break;
-				case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-					syncImageLoader.lock();
-					break;
-
-				default:
-					break;
-				}
-
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-			}
-		};
-		
-	}
-	
-	public void queryEngineerEquip(){
-		isQuery = false;
-		new Thread(new Runnable() {
-
-			@SuppressLint("SimpleDateFormat")
-			@Override
-			public void run() {
-				try {
-					String response = DataService.queryMedicalEquip(getApplicationContext()
-							, new SpData(getApplicationContext()).getStringValue(SpData.keyId, null)
-							, new SpData(getApplicationContext()).getStringValue(SpData.keyPhone, null)
-							, p, page_size, "不限".equals(hospital.getDepartName())?null:hospital.getDepartName(),depart);
-					mLog.d("http", "p:"+p+",response："+response);
-					if(response == null){
-
-					}else {
-						HttpResult hr = JSON.parseObject(response,HttpResult.class);
-						if (hr != null){
-							success = true;
-							if  (hr.isSuccess()){
-								if(hr.getTotalPage() <= p){
-									isFinish = true;
-								}
-								deviceList.addAll(JSON.parseArray(hr.getData().toString(), Device.class));
-								runOnUiThread(new Runnable(){  
-									@Override  
-									public void run() { 
-										deviceAdapter.setList();
-									}  
-								});
-							}
-							else{
-							}
-						}else{
-
-						}
-
-					}
-				} catch (Exception e) {
-					mLog.e("http", "Exception :"+e.getMessage());
-					e.printStackTrace();
-				}
-				isQuery = true;
-			}
-		}).start();
+		class ViewHolder {
+			ImageView iv;
+			TextView tvName;
+			TextView tvCode;
+			TextView tvType;
+		}
 
 	}
-	
-	private class TypeAdapter extends BaseAdapter{
+
+	class TypeAdapter extends BaseAdapter {
 
 		private LayoutInflater mInflater = null;
-		
+
 		public TypeAdapter(Context context)
 	    {
 	        this.mInflater = LayoutInflater.from(context);
 	    }
-		
+
 		@Override
 		public int getCount() {
 			return typeList.size();
@@ -449,13 +534,13 @@ public class DoctorDeviceActivity extends Activity {
 
 		@Override
 		public Object getItem(int arg0) {
-			
+
 			return typeList.get(arg0);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			
+
 			return position;
 		}
 
@@ -472,15 +557,14 @@ public class DoctorDeviceActivity extends Activity {
 		    {
 		        holder = (ViewHolder)convertView.getTag();
 		    }
-		    
-		    if(getCount()>0)
-		    {
+
+			if (getCount() > 0) {
 		    	holder.tvHospitalName.setText(typeList.get(position));
 		    }
-		                                                                                                 
-		    return convertView;
+
+			return convertView;
 		}
-		
+
 		class ViewHolder
 		{
 			public TextView tvHospitalName;
@@ -488,15 +572,17 @@ public class DoctorDeviceActivity extends Activity {
 
 	}
 
-	private class HospitalAdapter extends BaseAdapter{
+	prte
+
+	class HospitalAdapter extends BaseAdapter {
 
 		private LayoutInflater mInflater = null;
-		
+
 		public HospitalAdapter(Context context)
 	    {
 	        this.mInflater = LayoutInflater.from(context);
 	    }
-		
+
 		@Override
 		public int getCount() {
 			return hospitalList.size();
@@ -504,13 +590,13 @@ public class DoctorDeviceActivity extends Activity {
 
 		@Override
 		public Object getItem(int arg0) {
-			
+
 			return hospitalList.get(arg0);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			
+
 			return position;
 		}
 
@@ -527,91 +613,20 @@ public class DoctorDeviceActivity extends Activity {
 		    {
 		        holder = (ViewHolder)convertView.getTag();
 		    }
-		    
-		    if(getCount()>0)
-		    {
+
+			if (getCount() > 0) {
 		    	final Hospital detail = hospitalList.get(position);
 		    	holder.tvHospitalName.setText(detail.getDepartName());
 		    }
-		                                                                                                 
-		    return convertView;
+
+			return convertView;
 		}
-		
+
 		class ViewHolder
 		{
 			public TextView tvHospitalName;
 		}
 
-	}
-	
-	private void queryHospitaldoc(){
-		reload();
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-
-				try {
-					String s = DataService.querydepart(DoctorDeviceActivity.this);
-					mLog.d("http", "s:"+s);
-					if (!HlpUtils.isEmpty(s)){
-						final HttpResult hr = JSON.parseObject(s,HttpResult.class);
-						if (hr != null){
-							if  (hr.isSuccess()){
-								hospitalList.addAll(JSON.parseArray(hr.getData().toString(), Hospital.class));
-								runOnUiThread(new Runnable(){  
-									@Override  
-									public void run() {  
-										hospitalAdapter.notifyDataSetChanged();
-									}  
-								});
-							}else{
-								runOnUiThread(new Runnable(){  
-									@Override  
-									public void run() {  
-										Toast.makeText(getApplicationContext(), hr.getData().toString(), Toast.LENGTH_SHORT).show();
-									}  
-								});
-							}
-						}
-					}else{
-						runOnUiThread(new Runnable(){  
-							@Override  
-							public void run() {  
-								Toast.makeText(getApplicationContext(), "请检查网络后重试！", Toast.LENGTH_SHORT).show();
-							}  
-						});
-					}
-				}catch (final Exception he) {
-					he.printStackTrace();
-					mLog.e("http", "Exception:"+he.getMessage());
-					runOnUiThread(new Runnable(){  
-						@Override  
-						public void run() {  
-							Toast.makeText(getApplicationContext(), he.getMessage(), Toast.LENGTH_SHORT).show();
-						}  
-					});
-				}
-				closeLoadingDialog();
-			}
-		}).start();
-	}
-	
-	private void reload(){
-		if (loadingDialog == null){
-			loadingDialog = LoadingDialog.createLoadingDialog(this);
-		}
-		if (loadingDialog != null && !loadingDialog.isShowing()){
-			loadingDialog.show();
-		}
-	}
-	
-	private Dialog loadingDialog = null;
-	private void closeLoadingDialog() {
-		if(null != loadingDialog) {	 
-			loadingDialog.dismiss();
-			loadingDialog = null;
-		}
 	}
 
 }

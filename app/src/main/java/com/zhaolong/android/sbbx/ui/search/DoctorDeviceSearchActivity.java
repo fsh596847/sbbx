@@ -2,6 +2,7 @@ package com.zhaolong.android.sbbx.ui.search;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -32,16 +33,17 @@ import com.zhaolong.android.sbbx.services.DataService;
 import com.zhaolong.android.sbbx.ui.DeviceDetailActivity;
 import com.zhaolong.android.sbbx.utils.SyncImageLoaderListview;
 import com.zhaolong.android.sbbx.utils.mLog;
+import com.zhaolong.android.sbbx.windows.LoadingDialog;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 搜索工程师设备
+ * 医生设备搜索
  */
-public class EngineerDeviceSearchActivity extends Activity {
+public class DoctorDeviceSearchActivity extends Activity {
+
   DeviceAdapter deviceAdapter;
   ListView deviceListView;
-
   List<Device> deviceList = new ArrayList<Device>();
   //分页刷新
   private int p;
@@ -52,6 +54,7 @@ public class EngineerDeviceSearchActivity extends Activity {
 
   private EditText etSearch;
   private String sSearch;
+  private Dialog loadingDialog = null;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +62,16 @@ public class EngineerDeviceSearchActivity extends Activity {
     setContentView(R.layout.activity_engineer_search_device);
     etSearch = (EditText) findViewById(R.id.search_et);
     deviceListView = (ListView) findViewById(R.id.listView_device_device);
+
     deviceAdapter = new DeviceAdapter(getApplicationContext(), deviceListView);
     deviceListView.setAdapter(deviceAdapter);
+
     deviceListView.setOnItemClickListener(new OnItemClickListener() {
 
       @Override
       public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
           long arg3) {
-        startActivity(new Intent(EngineerDeviceSearchActivity.this, DeviceDetailActivity.class)
+        startActivity(new Intent(DoctorDeviceSearchActivity.this, DeviceDetailActivity.class)
             .putExtra("device", deviceList.get(arg2)));
       }
     });
@@ -86,7 +91,7 @@ public class EngineerDeviceSearchActivity extends Activity {
               if (success) {
                 p += 1;
               }
-              queryEngineerEquip(sSearch);
+              queryEngineerEquip();
             }
           }
         }
@@ -101,18 +106,17 @@ public class EngineerDeviceSearchActivity extends Activity {
       }
     });
 
-
-    //queryHospitaldoc();
-    //queryEngineerEquip(sSearch);
+    //clearDatas();
+    //queryEngineerEquip();
   }
 
   public void searchClick(View view) {
     sSearch = etSearch.getText().toString().trim();
     if (!TextUtils.isEmpty(sSearch)) {
       clearDatas();
-      queryEngineerEquip(sSearch);
+      queryEngineerEquip();
     } else {
-      Toast.makeText(EngineerDeviceSearchActivity.this, "请输入设备名称", Toast.LENGTH_SHORT).show();
+      Toast.makeText(DoctorDeviceSearchActivity.this, "请输入设备名称", Toast.LENGTH_SHORT).show();
     }
   }
 
@@ -125,7 +129,7 @@ public class EngineerDeviceSearchActivity extends Activity {
     deviceList.clear();
   }
 
-  public void queryEngineerEquip(String tx) {
+  public void queryEngineerEquip() {
     isQuery = false;
     new Thread(new Runnable() {
 
@@ -133,10 +137,10 @@ public class EngineerDeviceSearchActivity extends Activity {
       @Override
       public void run() {
         try {
-          String response = DataService.queryEngineerEquip(getApplicationContext()
+          String response = DataService.queryMedicalEquip(getApplicationContext()
               , new SpData(getApplicationContext()).getStringValue(SpData.keyId, null)
               , new SpData(getApplicationContext()).getStringValue(SpData.keyPhone, null)
-              , p, page_size, null, sSearch);
+              , p, page_size, sSearch);
           mLog.d("http", "p:" + p + ",response：" + response);
           if (response == null) {
 
@@ -168,6 +172,22 @@ public class EngineerDeviceSearchActivity extends Activity {
         isQuery = true;
       }
     }).start();
+  }
+
+  private void reload() {
+    if (loadingDialog == null) {
+      loadingDialog = LoadingDialog.createLoadingDialog(this);
+    }
+    if (loadingDialog != null && !loadingDialog.isShowing()) {
+      loadingDialog.show();
+    }
+  }
+
+  private void closeLoadingDialog() {
+    if (null != loadingDialog) {
+      loadingDialog.dismiss();
+      loadingDialog = null;
+    }
   }
 
   private class DeviceAdapter extends BaseAdapter {

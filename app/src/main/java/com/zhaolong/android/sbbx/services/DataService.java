@@ -367,25 +367,13 @@ public class DataService {
 		return s;
 	}
 	/**
-	 * 科室列表查询
-	 * @param context
-	 * @return
-	 * @throws Exception
-	 */
-	public static String querydepart(Context context) throws Exception{
-		Map<String,String> params = new LinkedHashMap<String, String>();
-		String s = HttpUtil.postUrl(context, ConfigSbbx.phone_querydepart, params);
-		return s;
-	}
-	
-	/**
 	 * 查询医生端设备
 	 * @param context
 	 * @param userid
 	 * @param mobile
 	 * @param p
 	 * @param pagesize
-	 * @param depar 
+	 * @param depar
 	 * @param equipClass 设备类型  1：诊断设备  2：治疗设备
 	 * @return
 	 * @throws Exception
@@ -399,6 +387,34 @@ public class DataService {
 		putParams(params, "depar", depar, false);
 		putParams(params, "equipClass", equipClass==0?null:String.valueOf(equipClass), false);
 		String s = HttpUtil.postUrl(context, ConfigSbbx.phone_queryMedicalEquip, params);
+		return s;
+	}
+
+	/**
+	 * 查询医生端设备
+	 *
+	 * @throws Exception
+	 */
+	public static String queryMedicalEquip(Context context, String userid, String mobile, int p,
+			int pagesize, String equipname) throws Exception {
+		Map<String, String> params = new LinkedHashMap<String, String>();
+		putParams(params, "userid", userid, true);
+		putParams(params, "mobile", mobile, true);
+		putParams(params, "p", String.valueOf(p), true);
+		putParams(params, "pagesize", String.valueOf(pagesize), true);
+		putParams(params, "equipname", equipname, true);
+		String s = HttpUtil.postUrl(context, ConfigSbbx.phone_queryMedicalEquip, params);
+		return s;
+	}
+
+	/**
+	 * 科室列表查询
+	 *
+	 * @throws Exception
+	 */
+	public static String querydepart(Context context) throws Exception {
+		Map<String, String> params = new LinkedHashMap<String, String>();
+		String s = HttpUtil.postUrl(context, ConfigSbbx.phone_querydepart, params);
 		return s;
 	}
 	/**

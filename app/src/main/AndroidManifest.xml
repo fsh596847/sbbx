@@ -46,9 +46,16 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <!--搜索-->
+    <!--工程师搜索-->
     <activity
         android:name="com.zhaolong.android.sbbx.ui.search.EngineerDeviceSearchActivity"
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.NoTitleBar">
+    </activity>
+
+    <!--医生搜索-->
+    <activity
+        android:name="com.zhaolong.android.sbbx.ui.search.DoctorDeviceSearchActivity"
         android:screenOrientation="portrait"
         android:theme="@android:style/Theme.NoTitleBar">
     </activity>
