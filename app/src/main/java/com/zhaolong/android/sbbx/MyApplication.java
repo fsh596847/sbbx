@@ -18,24 +18,23 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.zhaolong.android.sbbx.utils.mLog;
 
 public class MyApplication extends Application {
-	static MyApplication mInstance = null;
 	public static IWXAPI wxApi;
-	
+	static MyApplication mInstance = null;
 	public List<Activity> activitis = new ArrayList<Activity>();//保存启动的Activity的集合
+
+	public static MyApplication getInstance() {
+		return mInstance;
+	}
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		wxApi = WXAPIFactory.createWXAPI(this, null);
-		//wxApi.registerApp("wx2b867b7a6651c5fd");
-		
+		wxApi.registerApp("wx6fdd6ebce4bca6be");
+
 		mInstance = this;
-		
+
 		setPush();
-	}
-	
-	public static MyApplication getInstance() {
-		return mInstance;
 	}
 	
 	private void setPush() {
