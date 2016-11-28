@@ -1,5 +1,8 @@
 package com.zhaolong.android.sbbx.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -22,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.alibaba.fastjson.JSON;
 import com.zhaolong.android.sbbx.R;
 import com.zhaolong.android.sbbx.SpData;
@@ -29,17 +33,13 @@ import com.zhaolong.android.sbbx.beans.Device;
 import com.zhaolong.android.sbbx.beans.Hospital;
 import com.zhaolong.android.sbbx.beans.HttpResult;
 import com.zhaolong.android.sbbx.services.DataService;
-import com.zhaolong.android.sbbx.ui.search.DoctorDeviceSearchActivity;
 import com.zhaolong.android.sbbx.utils.HlpUtils;
 import com.zhaolong.android.sbbx.utils.SyncImageLoaderListview;
 import com.zhaolong.android.sbbx.utils.mLog;
 import com.zhaolong.android.sbbx.windows.LoadingDialog;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DoctorDeviceActivity extends Activity {
-	
-	
+
 	TextView tvHospital,tvType;
 	List<Hospital> hospitalList = new ArrayList<Hospital>();//科室列表
 	HospitalAdapter hospitalAdapter;
@@ -51,22 +51,14 @@ public class DoctorDeviceActivity extends Activity {
 	DeviceAdapter deviceAdapter;
 	ListView deviceListView;
 	List<Device> deviceList = new ArrayList<Device>();
-	priva
-			te
-	prite Dialog
-	priva
-			te
 	private List<String> typeList = new ArrayList<String>();//设备类型列表
 	//分页刷新
 	private int p;
 	private int page_size;
 	private boolean success;//是否更新成功
 	private boolean isQuery;//是否正在更新
-
-	blic
 	private boolean isFinish;
-
-	privavaivate
+	private Dialog loadingDialog = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +122,7 @@ public class DoctorDeviceActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				startActivity(new Intent(DoctorDeviceActivity.this, DeviceDetailActivity.class)
-				.putExtra("device", deviceList.get(arg2)));
+						.putExtra("device", deviceList.get(arg2)));
 			}
 		});
 		deviceListView.setOnScrollListener(new OnScrollListener() {
@@ -143,16 +135,16 @@ public class DoctorDeviceActivity extends Activity {
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
 				if (firstVisibleItem != 0 && !isFinish) {
-		            //判断可视Item是否能在当前页面完全显示
-		            if (visibleItemCount+firstVisibleItem == totalItemCount) {
-		            	if(isQuery){
-		            		if(success){
-		            			p+=1;
-		            		}
-		            		queryEngineerEquip();
-		            	}
-		            }
-		        }
+					//判断可视Item是否能在当前页面完全显示
+					if (visibleItemCount + firstVisibleItem == totalItemCount) {
+						if (isQuery) {
+							if (success) {
+								p += 1;
+							}
+							queryEngineerEquip();
+						}
+					}
+				}
 			}
 		});
 		//返回
@@ -161,14 +153,6 @@ public class DoctorDeviceActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				finish();
-			}
-		});
-		findViewById(R.id.iv_doctor_device_find).setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(DoctorDeviceActivity.this, DoctorDeviceSearchActivity.class);
-				startActivity(intent);
 			}
 		});
 		//科室下拉
@@ -234,8 +218,6 @@ public class DoctorDeviceActivity extends Activity {
 		queryEngineerEquip();
 	}
 
-	priva
-
 	private void clearDatas() {
 		p = 1;
 		page_size = 20;
@@ -245,9 +227,7 @@ public class DoctorDeviceActivity extends Activity {
 		deviceList.clear();
 	}
 
-	pute
-
-	void queryEngineerEquip() {
+	public void queryEngineerEquip() {
 		isQuery = false;
 		new Thread(new Runnable() {
 
@@ -283,6 +263,7 @@ public class DoctorDeviceActivity extends Activity {
 						} else {
 
 						}
+
 					}
 				} catch (Exception e) {
 					mLog.e("http", "Exception :" + e.getMessage());
@@ -291,9 +272,10 @@ public class DoctorDeviceActivity extends Activity {
 				isQuery = true;
 			}
 		}).start();
+
 	}
 
-	void queryHospitaldoc() {
+	private void queryHospitaldoc() {
 		reload();
 		new Thread(new Runnable() {
 
@@ -347,7 +329,7 @@ public class DoctorDeviceActivity extends Activity {
 		}).start();
 	}
 
-	void reload() {
+	private void reload() {
 		if (loadingDialog == null) {
 			loadingDialog = LoadingDialog.createLoadingDialog(this);
 		}
@@ -356,14 +338,12 @@ public class DoctorDeviceActivity extends Activity {
 		}
 	}
 
-	void closeLoadingDialog() {
+	private void closeLoadingDialog() {
 		if (null != loadingDialog) {
 			loadingDialog.dismiss();
 			loadingDialog = null;
 		}
 	}
-
-	loadingDialog=null
 
 	private class DeviceAdapter extends BaseAdapter{
 
@@ -371,12 +351,12 @@ public class DoctorDeviceActivity extends Activity {
 		Handler handler = new Handler(){
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
-				case 0:
-					notifyDataSetChanged();
-					break;
+					case 0:
+						notifyDataSetChanged();
+						break;
 
-				default:
-					break;
+					default:
+						break;
 				}
 			}
 		};
@@ -401,6 +381,7 @@ public class DoctorDeviceActivity extends Activity {
 					default:
 						break;
 				}
+
 			}
 
 			@Override
@@ -465,37 +446,34 @@ public class DoctorDeviceActivity extends Activity {
 		@Override
 		public View getView(int position, View v, ViewGroup parent) {
 			ViewHolder h;
-			if(v == null)
-		    {
-		        v = mInflater.inflate(R.layout.item_device, null);
-		        h = new ViewHolder();
-		        h.iv = (ImageView) v.findViewById(R.id.imageView_item_device);
-		        h.tvName = (TextView) v.findViewById(R.id.textView_item_device_name);
-		        h.tvCode = (TextView) v.findViewById(R.id.textView_item_device_code);
-		        h.tvType = (TextView) v.findViewById(R.id.textView_item_device_type);
-		        v.setTag(h);
-		    }else
-		    {
-		        h = (ViewHolder)v.getTag();
-		    }
+			if(v == null) {
+				v = mInflater.inflate(R.layout.item_device, null);
+				h = new ViewHolder();
+				h.iv = (ImageView) v.findViewById(R.id.imageView_item_device);
+				h.tvName = (TextView) v.findViewById(R.id.textView_item_device_name);
+				h.tvCode = (TextView) v.findViewById(R.id.textView_item_device_code);
+				h.tvType = (TextView) v.findViewById(R.id.textView_item_device_type);
+				v.setTag(h);
+			} else {
+				h = (ViewHolder) v.getTag();
+			}
 
-			if(getCount()>0)
-		    {
-		    	Device a = deviceList.get(position);
-		    	h.tvName.setText(a.getEquipName()==null ? "" :a.getEquipName());
-		    	h.tvCode.setText("设备编号  "+(a.getEquipCode()==null ? "" :a.getEquipCode()));
-		    	h.tvType.setText("设备分类  "+(a.getEquipClass()==null ? "" :a.getEquipClass()));
+			if(getCount()>0) {
+				Device a = deviceList.get(position);
+				h.tvName.setText(a.getEquipName() == null ? "" : a.getEquipName());
+				h.tvCode.setText("设备编号  " + (a.getEquipCode() == null ? "" : a.getEquipCode()));
+				h.tvType.setText("设备分类  " + (a.getEquipClass() == null ? "" : a.getEquipClass()));
 
-					String img = a.getImg();
-					Drawable d = position>=drawables.length?null:drawables[position];
+				String img = a.getImg();
+				Drawable d = position >= drawables.length ? null : drawables[position];
 				if(d != null){
 					h.iv.setImageDrawable(d);
 				}
 				else if(img != null){
 					h.iv.setImageResource(R.drawable.app_logo);
 					syncImageLoader.loadImage(mContext,position,img,imageLoadListener,0);
-		    	}
-		    }
+				}
+			}
 			return v;
 		}
 
@@ -518,14 +496,13 @@ public class DoctorDeviceActivity extends Activity {
 
 	}
 
-	class TypeAdapter extends BaseAdapter {
+	private class TypeAdapter extends BaseAdapter {
 
 		private LayoutInflater mInflater = null;
 
-		public TypeAdapter(Context context)
-	    {
-	        this.mInflater = LayoutInflater.from(context);
-	    }
+		public TypeAdapter(Context context) {
+			this.mInflater = LayoutInflater.from(context);
+		}
 
 		@Override
 		public int getCount() {
@@ -547,20 +524,18 @@ public class DoctorDeviceActivity extends Activity {
 		@Override
 		public View getView(final int position, View convertView, ViewGroup arg2) {
 			final ViewHolder holder;
-		    if(convertView == null)
-		    {
-		        holder = new ViewHolder();
-		        convertView = mInflater.inflate(R.layout.item_hospital, null);
-		        holder.tvHospitalName = (TextView)convertView.findViewById(R.id.tv_item_hospital);
-		        convertView.setTag(holder);
-		    }else
-		    {
-		        holder = (ViewHolder)convertView.getTag();
-		    }
+			if (convertView == null) {
+				holder = new ViewHolder();
+				convertView = mInflater.inflate(R.layout.item_hospital, null);
+				holder.tvHospitalName = (TextView) convertView.findViewById(R.id.tv_item_hospital);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
 
 			if (getCount() > 0) {
-		    	holder.tvHospitalName.setText(typeList.get(position));
-		    }
+				holder.tvHospitalName.setText(typeList.get(position));
+			}
 
 			return convertView;
 		}
@@ -572,16 +547,13 @@ public class DoctorDeviceActivity extends Activity {
 
 	}
 
-	prte
-
-	class HospitalAdapter extends BaseAdapter {
+	private class HospitalAdapter extends BaseAdapter {
 
 		private LayoutInflater mInflater = null;
 
-		public HospitalAdapter(Context context)
-	    {
-	        this.mInflater = LayoutInflater.from(context);
-	    }
+		public HospitalAdapter(Context context) {
+			this.mInflater = LayoutInflater.from(context);
+		}
 
 		@Override
 		public int getCount() {
@@ -603,21 +575,19 @@ public class DoctorDeviceActivity extends Activity {
 		@Override
 		public View getView(final int position, View convertView, ViewGroup arg2) {
 			final ViewHolder holder;
-		    if(convertView == null)
-		    {
-		        holder = new ViewHolder();
-		        convertView = mInflater.inflate(R.layout.item_hospital, null);
-		        holder.tvHospitalName = (TextView)convertView.findViewById(R.id.tv_item_hospital);
-		        convertView.setTag(holder);
-		    }else
-		    {
-		        holder = (ViewHolder)convertView.getTag();
-		    }
+			if (convertView == null) {
+				holder = new ViewHolder();
+				convertView = mInflater.inflate(R.layout.item_hospital, null);
+				holder.tvHospitalName = (TextView) convertView.findViewById(R.id.tv_item_hospital);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
 
 			if (getCount() > 0) {
-		    	final Hospital detail = hospitalList.get(position);
-		    	holder.tvHospitalName.setText(detail.getDepartName());
-		    }
+				final Hospital detail = hospitalList.get(position);
+				holder.tvHospitalName.setText(detail.getDepartName());
+			}
 
 			return convertView;
 		}
