@@ -20,7 +20,7 @@ import com.zhaolong.android.sbbx.utils.mLog;
 public class MyApplication extends Application {
 	public static IWXAPI wxApi;
 	static MyApplication mInstance = null;
-	public List<Activity> activitis = new ArrayList<Activity>();//保存启动的Activity的集合
+	public List<Activity> activitis = new ArrayList<>();//保存启动的Activity的集合
 
 	public static MyApplication getInstance() {
 		return mInstance;
