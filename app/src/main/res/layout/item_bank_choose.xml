@@ -17,7 +17,7 @@
         android:background="@drawable/box_g"
         android:textColor="@color/color_gray_light"
         android:textSize="@dimen/main" />
-    
+
     <Button
         android:id="@+id/btn_item_bank_2"
         android:layout_width="wrap_content"
