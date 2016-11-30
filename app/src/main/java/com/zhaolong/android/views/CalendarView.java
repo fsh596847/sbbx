@@ -1,10 +1,5 @@
 package com.zhaolong.android.views;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import com.zhaolong.android.sbbx.utils.mLog;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,6 +9,9 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import com.zhaolong.android.sbbx.utils.mLog;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 日历控件 功能：获得点选的日期区间
@@ -63,7 +61,7 @@ public class CalendarView extends View implements View.OnTouchListener {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		surface.width = getResources().getDisplayMetrics().widthPixels;
-		surface.height = (int) (getResources().getDisplayMetrics().heightPixels*2/5);
+		surface.height = getResources().getDisplayMetrics().heightPixels * 2 / 5;
 //		if (View.MeasureSpec.getMode(widthMeasureSpec) == View.MeasureSpec.EXACTLY) {
 //			surface.width = View.MeasureSpec.getSize(widthMeasureSpec);
 //		}
@@ -312,17 +310,11 @@ public class CalendarView extends View implements View.OnTouchListener {
 	}
 
 	private boolean isLastMonth(int i) {
-		if (i < curStartIndex) {
-			return true;
-		}
-		return false;
+		return i < curStartIndex;
 	}
 
 	private boolean isNextMonth(int i) {
-		if (i >= curEndIndex) {
-			return true;
-		}
-		return false;
+		return i >= curEndIndex;
 	}
 
 	private int getXByIndex(int i) {
@@ -474,10 +466,6 @@ public class CalendarView extends View implements View.OnTouchListener {
 		public float cellHeight; // 日期方框高度	
 		public float borderWidth;
 		public int bgColor = Color.parseColor("#FFFFFF");
-		private int textColor = Color.parseColor("#666666");;
-		//private int textColorUnimportant = Color.parseColor("#666666");
-		private int btnColor = Color.parseColor("#666666");
-		private int borderColor = Color.parseColor("#CCCCCC");
 		//public int todayNumberColor = Color.RED;
 		public int cellDownColor = Color.parseColor("#CCFFFF");
 		public int cellSelectedColor = Color.parseColor("#99CCFF");
@@ -491,6 +479,10 @@ public class CalendarView extends View implements View.OnTouchListener {
 		//public Path preMonthBtnPath; // 上一月按钮三角形
 		//public Path nextMonthBtnPath; // 下一月按钮三角形
 		public String[] weekText = { "日","一", "二", "三", "四", "五", "六"};
+		private int textColor = Color.parseColor("#666666");
+		//private int textColorUnimportant = Color.parseColor("#666666");
+		private int btnColor = Color.parseColor("#666666");
+		private int borderColor = Color.parseColor("#CCCCCC");
 		//public String[] monthText = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 		   
 		public void init() {

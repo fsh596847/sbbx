@@ -38,51 +38,45 @@ import com.zhaolong.android.sbbx.windows.LoadingDialog;
 import com.zhaolong.android.views.CalendarView;
 
 public class EngineerCalendarFragment extends Fragment {
-	
+
+	OrderAdapter orderAdapter;
+	ListView orderListView;
+	List<Device> orderList = new ArrayList<Device>();
+	String date;
+	int position;
 	private CalendarView calendar;
 	private ImageButton calendarLeft;
 	private TextView calendarCenter;
 	private ImageButton calendarRight;
-	
-	OrderAdapter orderAdapter;
-	ListView orderListView;
-	List<Device> orderList = new ArrayList<Device>();
 	//分页刷新
-	private int p; 
+	private int p;
 	private int page_size;
 	private boolean success;//是否更新成功
 	private boolean isQuery;//是否正在更新
 	private boolean isFinish;
+	private Dialog loadingDialog = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_engineer_calendar, container, false); 
+		View v = inflater.inflate(R.layout.fragment_engineer_calendar, container, false);
 
 
 
 		//获取日历控件对象
 		calendar = (CalendarView)v.findViewById(R.id.calendar);
-		calendar.setSelectMore(false); //单选  
+		calendar.setSelectMore(false); //单选
 		calendarLeft = (ImageButton)v.findViewById(R.id.calendarLeft);
 		calendarCenter = (TextView)v.findViewById(R.id.calendarCenter);
 		calendarRight = (ImageButton)v.findViewById(R.id.calendarRight);
-		//设置日历日期
-		Date d = new Date();
-		date = HlpUtils.dateFormatter.format(d);
-		calendar.setCalendarData(d);
 
-		//获取日历中年月 ya[0]为年，ya[1]为月（格式大家可以自行在日历控件中改）
-		/*String[] ya = calendar.getYearAndmonth().split("-"); 
-				calendarCenter.setText(ya[0]+"年"+ya[1]+"月");*/
-		calendarCenter.setText(calendar.getYearAndmonth());
 		calendarLeft.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				//点击上一月 同样返回年月 
-				String leftYearAndmonth = calendar.clickLeftMonth(); 
-				String[] ya = leftYearAndmonth.split("-"); 
+				//点击上一月 同样返回年月
+				String leftYearAndmonth = calendar.clickLeftMonth();
+				String[] ya = leftYearAndmonth.split("-");
 				calendarCenter.setText(ya[0]+"-"+ya[1]);
 			}
 		});
@@ -93,7 +87,7 @@ public class EngineerCalendarFragment extends Fragment {
 			public void onClick(View v) {
 				//点击下一月
 				String rightYearAndmonth = calendar.clickRightMonth();
-				String[] ya = rightYearAndmonth.split("-"); 
+				String[] ya = rightYearAndmonth.split("-");
 				calendarCenter.setText(ya[0]+"-"+ya[1]);
 			}
 		});
@@ -164,8 +158,19 @@ public class EngineerCalendarFragment extends Fragment {
 
 		return v;
 	}
-	String date;
-	
+
+	@Override public void onResume() {
+		super.onResume();
+		//设置日历日期
+		Date d = new Date();
+		date = HlpUtils.dateFormatter.format(d);
+		calendar.setCalendarData(d);
+
+		//获取日历中年月 ya[0]为年，ya[1]为月（格式大家可以自行在日历控件中改）
+		/*String[] ya = calendar.getYearAndmonth().split("-");
+				calendarCenter.setText(ya[0]+"年"+ya[1]+"月");*/
+		calendarCenter.setText(calendar.getYearAndmonth());
+	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -173,12 +178,11 @@ public class EngineerCalendarFragment extends Fragment {
 		case 4:
 			clearDatas(true);
 			break;
-			
+
 		default:
 			break;
 		}
 	}
-	int position;
 	
 	private void clearDatas(boolean hint) {
 		p = 1;
@@ -188,93 +192,6 @@ public class EngineerCalendarFragment extends Fragment {
 		isFinish = false;
 		orderList.clear();
 		queryRepairOrder(hint);
-	}
-	
-	private class OrderAdapter extends BaseAdapter{
-		
-		@SuppressLint("HandlerLeak")
-		Handler handler = new Handler(){
-			public void handleMessage(Message msg) {
-				switch (msg.what) {
-				case 0:
-					notifyDataSetChanged();
-					break;
-
-				default:
-					break;
-				}
-			};};
-		
-		private LayoutInflater mInflater = null;
-		
-		public OrderAdapter(Context context){
-			this.mInflater = LayoutInflater.from(context);
-		}
-		
-		public void setList(){
-			notifyDataSetChanged();
-		}
-
-		@Override
-		public int getCount() {
-			return orderList.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return orderList.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View v, ViewGroup parent) {
-			ViewHolder h;
-			if(v == null)
-		    {
-		        v = mInflater.inflate(R.layout.item_order_calendar, null);
-		        h = new ViewHolder();
-		        h.tvName = (TextView) v.findViewById(R.id.textView_order_calendar_name);
-		        h.tvDe = (TextView) v.findViewById(R.id.textView_order_calendar_state);
-		        h.tvTime = (TextView) v.findViewById(R.id.textView_order_calendar_time);
-		        v.setTag(h);
-		    }else
-		    {
-		        h = (ViewHolder)v.getTag();
-		    }
-		    
-		    if(getCount()>0)
-		    {
-		    	Device a = orderList.get(position);
-		    	String name = "";
-		    	switch (a.getState()) {
-				case 0:
-					name = "接单";
-					break;
-
-				case 1:
-					name = "签到";
-					break;
-					
-				}
-		    	h.tvDe.setText(name);
-		    	h.tvName.setText((a.getEquipName()==null ? "" :a.getEquipName()));
-		    	h.tvTime.setText("预约时间："+((a.getBookingTime()==null ? "" :a.getBookingTime())));
-		    	
-		    }
-			return v;
-		}
-		
-		class ViewHolder
-		{
-			TextView tvName;
-			TextView tvDe;
-			TextView tvTime;
-		}
-		
 	}
 	
 	private void queryRepairOrder(final boolean hint){
@@ -365,12 +282,93 @@ public class EngineerCalendarFragment extends Fragment {
 		}
 	}
 	
-	private Dialog loadingDialog = null;
 	private void closeLoadingDialog() {
-		if(null != loadingDialog) {	 
+		if (null != loadingDialog) {
 			loadingDialog.dismiss();
 			loadingDialog = null;
 		}
+	}
+
+	private class OrderAdapter extends BaseAdapter {
+
+		@SuppressLint("HandlerLeak")
+		Handler handler = new Handler() {
+			public void handleMessage(Message msg) {
+				switch (msg.what) {
+					case 0:
+						notifyDataSetChanged();
+						break;
+
+					default:
+						break;
+				}
+			}
+		};
+
+		private LayoutInflater mInflater = null;
+
+		public OrderAdapter(Context context) {
+			this.mInflater = LayoutInflater.from(context);
+		}
+
+		public void setList() {
+			notifyDataSetChanged();
+		}
+
+		@Override
+		public int getCount() {
+			return orderList.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return orderList.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View v, ViewGroup parent) {
+			ViewHolder h;
+			if (v == null) {
+				v = mInflater.inflate(R.layout.item_order_calendar, null);
+				h = new ViewHolder();
+				h.tvName = (TextView) v.findViewById(R.id.textView_order_calendar_name);
+				h.tvDe = (TextView) v.findViewById(R.id.textView_order_calendar_state);
+				h.tvTime = (TextView) v.findViewById(R.id.textView_order_calendar_time);
+				v.setTag(h);
+			} else {
+				h = (ViewHolder) v.getTag();
+			}
+
+			if (getCount() > 0) {
+				Device a = orderList.get(position);
+				String name = "";
+				switch (a.getState()) {
+					case 0:
+						name = "接单";
+						break;
+
+					case 1:
+						name = "签到";
+						break;
+				}
+				h.tvDe.setText(name);
+				h.tvName.setText((a.getEquipName() == null ? "" : a.getEquipName()));
+				h.tvTime.setText("预约时间：" + ((a.getBookingTime() == null ? "" : a.getBookingTime())));
+			}
+			return v;
+		}
+
+		class ViewHolder {
+			TextView tvName;
+			TextView tvDe;
+			TextView tvTime;
+		}
+
 	}
 
 }

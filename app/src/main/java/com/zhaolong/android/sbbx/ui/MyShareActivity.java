@@ -76,9 +76,9 @@ public class MyShareActivity extends Activity {
 			}
 	     WXWebpageObject webpage = new WXWebpageObject();  
 	     webpage.webpageUrl = "https://hao.qq.com/?unc=o400493_1&s=o400493_1";  
-	     WXMediaMessage msg = new WXMediaMessage(webpage);  
-	     msg.title = "设备保修";
-	     msg.description = "设备保修、管理不用愁！";  
+	     WXMediaMessage msg = new WXMediaMessage(webpage);
+		 msg.title = "易报修";
+		 msg.description = "设备保修、管理不用愁！";
 	     //这里替换一张自己工程里的图片资源  
 	     Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.app_logo);  
 	     msg.setThumbImage(thumb);  

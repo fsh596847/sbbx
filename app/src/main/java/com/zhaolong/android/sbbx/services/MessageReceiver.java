@@ -23,10 +23,9 @@ import com.zhaolong.android.sbbx.ui.OrderMyActivity;
 import com.zhaolong.android.sbbx.utils.mLog;
 
 public class MessageReceiver extends XGPushBaseReceiver {
-  private Intent intent = new Intent("com.qq.xgdemo.activity.UPDATE_LISTVIEW");
   public static final String MsgBroadCastAction = "com.s66.weiche.receiver.MsgBroadCastAction";
-
   public static final String LogTag = "MessageReceiver";
+  private Intent intent = new Intent("com.qq.xgdemo.activity.UPDATE_LISTVIEW");
 
   @SuppressWarnings("unused")
   private void show(Context context, String text) {
@@ -240,7 +239,7 @@ public class MessageReceiver extends XGPushBaseReceiver {
 
   @SuppressWarnings("deprecation")
   public void addNotification(Context c, String title, String content, String msg) {
-    mLog.d(LogTag, "title:" + title);
+    mLog.d(LogTag, "title:" + title + "content:" + content + "msg:" + msg);
 
     NotificationManager manager =
         (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -309,18 +308,18 @@ public class MessageReceiver extends XGPushBaseReceiver {
       notification = new NotificationCompat.Builder(c)
           .setSmallIcon(R.drawable.app_logo)//必须要先setSmallIcon，否则会显示默认的通知，不显示自定义通知
           .setTicker(title)
-          .setContentTitle(title)
+          .setContentTitle(content)
           .setDefaults(Notification.DEFAULT_SOUND)
-          .setContentText("this is content text")
+          //.setContentText("this is content text")
           .setContentIntent(pendingIntent)
           .build();
     } else {
       notification = new Notification.Builder(c)
           .setSmallIcon(R.drawable.app_logo)//必须要先setSmallIcon，否则会显示默认的通知，不显示自定义通知
           .setTicker(title)
-          .setContentTitle(title)
+          .setContentTitle(content)
           .setDefaults(Notification.DEFAULT_SOUND)
-          .setContentText("this is content text")
+          //.setContentText("this is content text")
           .setContentIntent(pendingIntent)
           .build();
     }
