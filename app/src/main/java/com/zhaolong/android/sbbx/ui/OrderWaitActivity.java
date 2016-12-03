@@ -62,7 +62,7 @@ public class OrderWaitActivity extends Activity {
       HlpUtils.setText(tvHospital, device.getHospital());
       HlpUtils.setText(tvDepar, device.getDeparName());
       HlpUtils.setText(tvEquipAddress, device.getEquipAddress());
-      HlpUtils.setText(tvMan, device.getOrderName());
+      HlpUtils.setText(tvMan, device.getOrderName() + "(" + device.getRepairMobile() + ")");
       HlpUtils.setText(tvTime, device.getBookingTime());
       HlpUtils.setText(etDescribe, device.getFalultDesc());
     } else {

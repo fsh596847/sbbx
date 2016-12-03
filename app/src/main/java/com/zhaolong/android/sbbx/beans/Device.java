@@ -52,6 +52,15 @@ public class Device implements Serializable {
   private String tag;
   private String ordercode;
   private String orderName;
+  private String repairMobile;
+
+  public String getRepairMobile() {
+    return repairMobile;
+  }
+
+  public void setRepairMobile(String repairMobile) {
+    this.repairMobile = repairMobile;
+  }
 
   public String getOrderName() {
     return orderName;
