@@ -77,12 +77,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/color_gray_bg" />
-            <RelativeLayout 
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                     android:text="设备名称"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_order_equipName"
                     android:layout_width="wrap_content"
@@ -100,8 +100,12 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
@@ -127,10 +131,7 @@
                     android:textColor="@color/color_gray_light" />
 
             </RelativeLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/color_gray_bg"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -222,12 +223,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/color_gray_bg" />
-            <RelativeLayout 
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -235,7 +236,7 @@
                     android:text="报修人"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_order_man"
                     android:layout_width="wrap_content"
@@ -245,8 +246,9 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

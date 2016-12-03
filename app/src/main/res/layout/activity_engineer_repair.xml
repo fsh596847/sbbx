@@ -4,11 +4,36 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_repair" >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_layout_height_tab"
+        android:background="@color/color_major_blue_tab">
+
+        <ImageView
+            android:id="@+id/iv_repair_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:paddingLeft="@dimen/activity_padding_tab"
+            android:paddingRight="@dimen/activity_padding_tab"
+            android:src="@drawable/back_w"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="维修详情"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/tab"/>
+    </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:background="@color/color_white" >
+        android:background="@color/color_white" android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,21 +43,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:background="@color/color_major_blue" />
-            
-            <LinearLayout 
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:gravity="center_vertical">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="订单编号"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_repair_repairCode"
                     android:layout_width="match_parent"
@@ -42,15 +67,15 @@
                     android:maxLines="1"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </LinearLayout>
-            
-            <RelativeLayout 
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,7 +83,7 @@
                     android:text="设备编号"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_repair_equipSeq"
                     android:layout_width="wrap_content"
@@ -68,15 +93,15 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
-            
-            <RelativeLayout 
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,7 +109,7 @@
                     android:text="设备名称"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_repair_equipName"
                     android:layout_width="wrap_content"
@@ -94,15 +119,15 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
-            
-            <RelativeLayout 
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,7 +135,7 @@
                     android:text="设备型号"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_repair_equipBar"
                     android:layout_width="wrap_content"
@@ -120,15 +145,15 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
-            
-            <RelativeLayout 
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,7 +161,7 @@
                     android:text="所属医院"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_repair_hospital"
                     android:layout_width="wrap_content"
@@ -146,15 +171,15 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
-            
-            <RelativeLayout 
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -162,7 +187,7 @@
                     android:text="所属科室"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_repair_depar"
                     android:layout_width="wrap_content"
@@ -172,15 +197,15 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
-            
-            <RelativeLayout 
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,7 +213,7 @@
                     android:text="设备位置"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
                 <TextView
                     android:id="@+id/tv_repair_equipAddress"
                     android:layout_width="wrap_content"
@@ -198,15 +223,67 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_light" />
-                
+
             </RelativeLayout>
-            
-            <RelativeLayout 
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp">
-                
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="报修人"
+                    android:textSize="@dimen/main"
+                    android:textColor="@color/color_gray_deep"/>
+
+                <TextView
+                    android:id="@+id/tv_order_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/main"
+                    android:textColor="@color/color_gray_light"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="维修工程师"
+                    android:textSize="@dimen/main"
+                    android:textColor="@color/color_gray_deep"/>
+
+                <TextView
+                    android:id="@+id/tv_engineer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/main"
+                    android:textColor="@color/color_gray_light"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -214,9 +291,9 @@
                     android:text="故障现象与处理"
                     android:textSize="@dimen/main"
                     android:textColor="@color/color_gray_deep" />
-                
+
             </RelativeLayout>
-            
+
             <EditText
                 android:id="@+id/et_repair_describe"
                 android:layout_width="match_parent"
@@ -233,7 +310,7 @@
                 android:textColor="@color/color_gray_light"
                 android:textSize="@dimen/main" >
             </EditText>
-            
+
             <Button
                 android:id="@+id/btn_repair_ok"
                 android:layout_width="match_parent"
@@ -243,33 +320,8 @@
                 android:text="完成"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/tab" />
-            
+
         </LinearLayout>
     </ScrollView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_layout_height_tab"
-        android:background="@color/color_major_blue_tab" >
-
-        <ImageView
-            android:id="@+id/iv_repair_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@null"
-            android:paddingLeft="@dimen/activity_padding_tab"
-            android:paddingRight="@dimen/activity_padding_tab"
-            android:src="@drawable/back_w" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="维修详情"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/tab" />
-    </RelativeLayout>
 
 </RelativeLayout>
