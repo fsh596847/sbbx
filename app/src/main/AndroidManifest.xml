@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zhaolong.android.sbbx"
-   >
-
-
+>
   <uses-permission android:name="android.permission.READ_SMS"/>
   <uses-permission android:name="android.permission.CAMERA"/>
   <uses-permission android:name="android.permission.FLASHLIGHT"/>
@@ -29,15 +27,14 @@
   <uses-permission android:name="android.permission.BLUETOOTH"/>
   <uses-permission android:name="android.permission.BATTERY_STATS"/>
 
-
   <application
       android:name="com.zhaolong.android.sbbx.MyApplication"
       android:allowBackup="true"
+      android:label="@string/app_name"
       android:icon="@drawable/ic_app"
       android:theme="@android:style/Theme.NoTitleBar">
     <activity
         android:name="com.zhaolong.android.sbbx.MainActivity"
-        android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:windowSoftInputMode="adjustPan|stateHidden">
       <intent-filter>
@@ -49,6 +46,12 @@
     <!--工程师搜索-->
     <activity
         android:name="com.zhaolong.android.sbbx.ui.search.EngineerDeviceSearchActivity"
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.NoTitleBar">
+    </activity>
+    <!--测试-->
+    <activity
+        android:name="com.zhaolong.android.sbbx.ui.search.TestActivity"
         android:screenOrientation="portrait"
         android:theme="@android:style/Theme.NoTitleBar">
     </activity>

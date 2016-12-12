@@ -56,7 +56,7 @@ public class EngineerRepairActivity extends Activity {
 			HlpUtils.setText(tvHospital, device.getHospital());
 			HlpUtils.setText(tvDepar, device.getDeparName());
 			HlpUtils.setText(tvEquipAddress, device.getEquipAddress());
-			HlpUtils.setText(etDescribe, device.getComments());
+			HlpUtils.setText(etDescribe, device.getFalultDesc());
 			if(isOnlySee){
 				etDescribe.setEnabled(false);
 				btnOk.setText("返回");
@@ -171,6 +171,7 @@ public class EngineerRepairActivity extends Activity {
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
+										Toast.makeText(EngineerRepairActivity.this, "扫描成功", Toast.LENGTH_SHORT).show();
 										HlpUtils.setText(tvEngineer, device.getRepairName());
 										HlpUtils.setText(tvOrderMan,
 												device.getOrderName() + "(" + device.getRepairMobile() + ")");
@@ -181,7 +182,7 @@ public class EngineerRepairActivity extends Activity {
 										HlpUtils.setText(tvHospital, device.getHospital());
 										HlpUtils.setText(tvDepar, device.getDeparName());
 										HlpUtils.setText(tvEquipAddress, device.getEquipAddress());
-										HlpUtils.setText(etDescribe, device.getComments());
+										HlpUtils.setText(etDescribe, device.getFalultDesc());
 									}
 								});
 							}else{

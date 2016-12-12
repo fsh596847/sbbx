@@ -307,19 +307,20 @@ public class MessageReceiver extends XGPushBaseReceiver {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
       notification = new NotificationCompat.Builder(c)
           .setSmallIcon(R.drawable.app_logo)//必须要先setSmallIcon，否则会显示默认的通知，不显示自定义通知
-          .setTicker(title)
-          .setContentTitle(content)
+          //.setTicker(title)
+          .setContentTitle(title)
           .setDefaults(Notification.DEFAULT_SOUND)
-          //.setContentText("this is content text")
+          .setContentText(content)
           .setContentIntent(pendingIntent)
           .build();
     } else {
       notification = new Notification.Builder(c)
           .setSmallIcon(R.drawable.app_logo)//必须要先setSmallIcon，否则会显示默认的通知，不显示自定义通知
-          .setTicker(title)
-          .setContentTitle(content)
+          //.setTicker(title)
+          .setContentTitle(title)
+          .setContentText(content)
           .setDefaults(Notification.DEFAULT_SOUND)
-          //.setContentText("this is content text")
+          //.setContentText(msg)
           .setContentIntent(pendingIntent)
           .build();
     }

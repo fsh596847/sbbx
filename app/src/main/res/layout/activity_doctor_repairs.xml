@@ -45,7 +45,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
@@ -71,7 +74,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
@@ -97,7 +103,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
@@ -123,7 +132,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
@@ -149,7 +161,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
@@ -175,7 +190,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
@@ -201,7 +219,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout
                 android:id="@+id/ll_repairs_time" 
                 android:layout_width="match_parent"
@@ -228,7 +249,10 @@
                     android:textColor="@color/color_gray_light" />
                 
             </RelativeLayout>
-            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray_bg"/>
             <RelativeLayout 
                 android:layout_width="match_parent"
                 android:layout_height="34dp"

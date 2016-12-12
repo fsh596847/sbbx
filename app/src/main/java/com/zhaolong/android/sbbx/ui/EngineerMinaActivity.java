@@ -75,7 +75,7 @@ public class EngineerMinaActivity extends Activity implements OnClickListener {
         btnLeft.setCompoundDrawables(null,
             HlpUtils.getCompoundDrawable(getApplicationContext(), R.drawable.m_h_b), null, null);
         btnLeft.setTextColor(getResources().getColor(R.color.color_major_blue));
-        hideFragment(transaction);
+        //hideFragment(transaction);
         if (fEngineerHome == null) {
           fEngineerHome = new EngineerHomeFragment();
         }
@@ -87,7 +87,7 @@ public class EngineerMinaActivity extends Activity implements OnClickListener {
         break;
       case R.id.imageView_engineer_main_find:
         clearTabUI();
-        hideFragment(transaction);
+        //hideFragment(transaction);
         if (fEngineerCentre == null) {
           fEngineerCentre = new EngineerCalendarFragment();
         }
@@ -102,7 +102,7 @@ public class EngineerMinaActivity extends Activity implements OnClickListener {
         btnRight.setCompoundDrawables(null,
             HlpUtils.getCompoundDrawable(getApplicationContext(), R.drawable.m_m_b), null, null);
         btnRight.setTextColor(getResources().getColor(R.color.color_major_blue));
-        hideFragment(transaction);
+        //hideFragment(transaction);
         if (fEngineerMy == null) {
           fEngineerMy = new EngineerMyFragment();
         }
