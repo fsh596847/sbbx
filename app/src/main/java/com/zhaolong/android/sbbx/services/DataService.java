@@ -247,11 +247,14 @@ public class DataService {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String FinishOrder(Context context,String userid,String orderid,String parts) throws Exception{
+	public static String FinishOrder(Context context, String userid, String orderid, String parts,
+			String ischangeparts, String results) throws Exception {
 		Map<String,String> params = new LinkedHashMap<String, String>();
 		putParams(params, "userid", userid, true);
 		putParams(params, "orderid", orderid, true);
 		putParams(params, "parts", parts, false);
+		putParams(params, "ischangeparts", ischangeparts, true);
+		putParams(params, "results", results, true);
 		String s = HttpUtil.postUrl(context, ConfigSbbx.phone_FinishOrder, params);
 		return s;
 	}
