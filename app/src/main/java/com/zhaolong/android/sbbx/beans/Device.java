@@ -53,6 +53,15 @@ public class Device implements Serializable {
   private String ordercode;
   private String orderName;
   private String repairMobile;
+  private String results;
+
+  public String getResults() {
+    return results;
+  }
+
+  public void setResults(String results) {
+    this.results = results;
+  }
 
   public String getRepairMobile() {
     return repairMobile;

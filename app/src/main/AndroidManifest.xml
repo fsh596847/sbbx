@@ -37,12 +37,20 @@
         android:name="com.zhaolong.android.sbbx.MainActivity"
         android:screenOrientation="portrait"
         android:windowSoftInputMode="adjustPan|stateHidden">
+
+    </activity>
+    <!--启动页-->
+    <activity
+        android:name="com.zhaolong.android.sbbx.ui.StartActivity"
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustPan|stateHidden">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+
     <!--工程师搜索-->
     <activity
         android:name="com.zhaolong.android.sbbx.ui.search.EngineerDeviceSearchActivity"

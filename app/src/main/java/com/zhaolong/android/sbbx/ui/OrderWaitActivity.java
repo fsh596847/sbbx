@@ -13,10 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alibaba.fastjson.JSON;
 import com.zhaolong.android.sbbx.R;
 import com.zhaolong.android.sbbx.SpData;
@@ -35,7 +33,7 @@ public class OrderWaitActivity extends Activity {
   TextView tvRepairCode, tvEquipSeq, tvEquipBar, tvEquipName, tvHospital, tvDepar, tvEquipAddress,
       tvMan, tvTime;
   TextView tvEngineer;
-  RelativeLayout viewParent;
+  LinearLayout viewParent;
   EditText etDescribe;
   ImageView ivAdd1, ivAdd2, ivAdd3;
   Button btnSign, btnLong, btnDetail;
@@ -87,7 +85,7 @@ public class OrderWaitActivity extends Activity {
     tvEquipAddress = (TextView) findViewById(R.id.tv_order_equipAddress);
     tvMan = (TextView) findViewById(R.id.tv_order_man);
     tvTime = (TextView) findViewById(R.id.tv_order_time);
-    viewParent = (RelativeLayout) findViewById(R.id.layout_order);
+    viewParent = (LinearLayout) findViewById(R.id.layout_order);
     etDescribe = (EditText) findViewById(R.id.et_order_describe);
     ivAdd1 = (ImageView) findViewById(R.id.iv_order_image1);
     ivAdd2 = (ImageView) findViewById(R.id.iv_order_image2);

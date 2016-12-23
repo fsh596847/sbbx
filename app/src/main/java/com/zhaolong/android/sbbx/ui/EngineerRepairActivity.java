@@ -41,7 +41,7 @@ public class EngineerRepairActivity extends Activity {
   /**
    * 是否更换配件
    */
-  private String ischangeparts = "1";
+  private String ischangeparts = "0";
   /**
    * 维修小结
    */
@@ -83,6 +83,7 @@ public class EngineerRepairActivity extends Activity {
       HlpUtils.setText(tvDepar, device.getDeparName());
       HlpUtils.setText(tvEquipAddress, device.getEquipAddress());
       HlpUtils.setText(etDescribe, device.getFalultDesc());
+      HlpUtils.setText(etBriefsummary, device.getResults());
       if (isOnlySee) {
         etDescribe.setEnabled(false);
         btnOk.setText("返回");
@@ -213,6 +214,7 @@ public class EngineerRepairActivity extends Activity {
                     HlpUtils.setText(tvDepar, device.getDeparName());
                     HlpUtils.setText(tvEquipAddress, device.getEquipAddress());
                     HlpUtils.setText(etDescribe, device.getFalultDesc());
+                    HlpUtils.setText(etBriefsummary, device.getResults());
                   }
                 });
               } else {

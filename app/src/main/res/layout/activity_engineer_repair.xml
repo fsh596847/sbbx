@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:id="@+id/layout_repair">
 
   <RelativeLayout
@@ -39,10 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="44dp"
-          android:background="@color/color_major_blue"/>
+
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -303,7 +301,7 @@
             android:id="@+id/cb_yes"
             android:text="是"
             android:button="@drawable/umeng_update_button_check_selector"
-            android:checked="true"
+
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
@@ -317,6 +315,7 @@
         <CheckBox
             android:id="@+id/cb_no"
             android:text="否"
+            android:checked="true"
             android:button="@drawable/umeng_update_button_check_selector"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
       </LinearLayout>
@@ -364,7 +363,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="故障现象与处理"
+            android:text="故障描述"
             android:textSize="@dimen/main"
             android:textColor="@color/color_gray_deep"/>
 
@@ -431,4 +430,4 @@
     </LinearLayout>
   </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>
